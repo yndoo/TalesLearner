@@ -12,6 +12,12 @@ public class Player : MonoBehaviour, IFallable
         condition.AddDamage(amount);
     }
 
+    public void Teleport(Vector3 pos)
+    {
+        transform.position = pos;
+        // TODO : 텔레포트 애니메이션 등
+    }
+
     private void Awake()
     {
         CharacterManager.Instance.Player = this;
