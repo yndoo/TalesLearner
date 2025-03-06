@@ -44,6 +44,10 @@ public class PlayerCondition : MonoBehaviour
     public void AddDamage(float damage)
     {
         curDamage += damage;
+        if (curDamage > PublicDefinitions.MaxDamage)
+        {
+            curDamage = PublicDefinitions.MaxDamage;
+        }
         UIManager.Instance.gaugeUI.SetDamage(curDamage);
     }
 }
