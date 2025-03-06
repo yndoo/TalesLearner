@@ -5,17 +5,42 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour, ISuperJumpable
 {
-    public float MoveSpeed;
+    public float DefaultMoveSpeed;
     public float JumpPower;
+    public float CurMoveSpeed
+    {
+        get => _curMoveSpeed;
+        set
+        {
+            if(value > PublicDefinitions.MaxSpeed)
+            {
+                _curMoveSpeed = PublicDefinitions.MaxSpeed;
+            }
+            else if(value < DefaultMoveSpeed)
+            {
+                _curMoveSpeed = DefaultMoveSpeed;
+            }
+            else
+            {
+                _curMoveSpeed = value;
+            }
+        }
+    }
+    [SerializeField] private float _curMoveSpeed;
 
     private Vector2 curMovementInput;
     private Rigidbody _rigidbody;
+
+    private bool isDashMode = false;
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
     }
-
+    private void Start()
+    {
+        CurMoveSpeed = DefaultMoveSpeed;   
+    }
     private void FixedUpdate()
     {
         Move();
@@ -23,8 +48,18 @@ public class PlayerController : MonoBehaviour, ISuperJumpable
 
     private void Move()
     {
+        if(isDashMode)
+        {
+            CurMoveSpeed += 0.2f;
+            CharacterManager.Instance.Player.condition.UseStamina();
+        }
+        else
+        {
+            CurMoveSpeed -= 0.2f;
+        }
+
         Vector3 dir = transform.forward * curMovementInput.y + transform.right * curMovementInput.x;
-        dir *= MoveSpeed;
+        dir *= CurMoveSpeed;
         dir.y = _rigidbody.velocity.y;
 
         _rigidbody.velocity = dir;
@@ -47,6 +82,18 @@ public class PlayerController : MonoBehaviour, ISuperJumpable
         if(context.phase == InputActionPhase.Started)
         {
             _rigidbody.AddForce(Vector3.up * JumpPower, ForceMode.Impulse);
+        }
+    }
+
+    public void OnDash(InputAction.CallbackContext context)
+    {
+        if(context.phase == InputActionPhase.Started)
+        {
+            isDashMode = true;
+        }
+        else if(context.phase == InputActionPhase.Canceled)
+        {
+            isDashMode = false;
         }
     }
 

@@ -58,13 +58,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4396981532159720911}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -5}
+  m_LocalRotation: {x: 0.08715578, y: 0, z: 0, w: 0.9961947}
+  m_LocalPosition: {x: 0, y: 2, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8412479577739073564}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 10, y: 0, z: 0}
 --- !u!20 &9115108770776202855
 Camera:
   m_ObjectHideFlags: 0
@@ -244,6 +244,8 @@ GameObject:
   - component: {fileID: 9092465944396161999}
   - component: {fileID: 2917411388204645541}
   - component: {fileID: 6365425968691676783}
+  - component: {fileID: 5963902595292475755}
+  - component: {fileID: 6700913049527887458}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -325,6 +327,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: c0a294fd-533c-475d-9ad8-bd6ba5fd8e74
     m_ActionName: Player/Jump[/Keyboard/ctrl]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 9092465944396161999}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnDash
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 9cc3312d-1228-40a1-83ca-417290580757
+    m_ActionName: Player/Dash[/Keyboard/z]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -342,7 +360,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edf1703660026064a9eeb26a446c23d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 20
+  DefaultMoveSpeed: 13
+  CurMoveSpeed: 0
   JumpPower: 1000
 --- !u!54 &2917411388204645541
 Rigidbody:
@@ -394,3 +413,29 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &5963902595292475755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9172804498293414011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e5c6d2bc830ec344a884b1d416944e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curStamina: 0
+  curDamage: 0
+--- !u!114 &6700913049527887458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9172804498293414011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bd6929650324c14aa565316ac867a3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
