@@ -2,6 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+#region enum
+public enum ItemType
+{
+    SpeedItem,
+    AddDash,
+    Shield
+}
+#endregion
+
 public static class PublicDefinitions
 {
     #region »ó¼ö

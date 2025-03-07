@@ -50,4 +50,14 @@ public class PlayerCondition : MonoBehaviour
         }
         UIManager.Instance.gaugeUI.SetDamage(curDamage);
     }
+
+    public void AddStamina(float amount)
+    {
+        curStamina += amount;
+        if (curStamina > PublicDefinitions.MaxStamina)
+        {
+            curStamina = PublicDefinitions.MaxStamina;
+        }
+        UIManager.Instance.gaugeUI.SetStamina(curStamina);
+    }
 }
