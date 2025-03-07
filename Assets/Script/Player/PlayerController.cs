@@ -5,6 +5,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour, ISuperJumpable
 {
+    private static readonly int IsRunning = Animator.StringToHash("IsRunning");
+    private static readonly int IsJumping = Animator.StringToHash("IsJumping");
+
     public float DefaultMoveSpeed;
     public float JumpPower;
     public float CurMoveSpeed
@@ -30,12 +33,14 @@ public class PlayerController : MonoBehaviour, ISuperJumpable
 
     private Vector2 curMovementInput;
     private Rigidbody _rigidbody;
+    private Animator _animator;
 
     private bool isDashMode = false;
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        _animator = GetComponentInChildren<Animator>();
     }
     private void Start()
     {
@@ -48,7 +53,7 @@ public class PlayerController : MonoBehaviour, ISuperJumpable
 
     private void Move()
     {
-        if(isDashMode && CharacterManager.Instance.Player.condition.CanUseStamina())
+        if (isDashMode && CharacterManager.Instance.Player.condition.CanUseStamina())
         {
             CurMoveSpeed += 0.2f;
             CharacterManager.Instance.Player.condition.UseStamina();
@@ -70,10 +75,12 @@ public class PlayerController : MonoBehaviour, ISuperJumpable
         if (context.phase == InputActionPhase.Performed)
         {
             curMovementInput = context.ReadValue<Vector2>();
+            _animator.SetBool(IsRunning, true);
         }
         else if (context.phase == InputActionPhase.Canceled)
         {
             curMovementInput = Vector2.zero;
+            _animator.SetBool(IsRunning, false);
         }
     }
 
@@ -81,6 +88,7 @@ public class PlayerController : MonoBehaviour, ISuperJumpable
     {
         if(context.phase == InputActionPhase.Started)
         {
+            _animator.SetBool(IsJumping, true);
             _rigidbody.AddForce(Vector3.up * JumpPower, ForceMode.Impulse);
         }
     }
