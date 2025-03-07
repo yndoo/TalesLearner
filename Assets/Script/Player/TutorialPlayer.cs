@@ -28,8 +28,13 @@ public class TutorialPlayer : MonoBehaviour
             RaycastHit hit;
             if(Physics.Raycast(ray, out hit, maxCheckDistance, checkLayer))
             {
-                // TODO : UI 띄우기
-                Debug.Log("오브젝트 감지");
+                //Debug.Log("오브젝트 감지");
+                hit.collider.gameObject.GetComponent<TutorialObject>().SetTutorialUI();
+            }
+            else
+            {
+                // 빈 곳을 쏜 경우 
+                UIManager.Instance.DescriptionUI.SetActive(false);
             }
         }
     }

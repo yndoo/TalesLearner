@@ -9,6 +9,15 @@ public enum ItemType
     AddDash,
     Shield
 }
+
+public enum DescUIType
+{
+    Tutorial_Item,
+    Tutorial_Dash,
+    Tutorial_Superjump,
+    Item_Booster,
+    Item_AddDash,
+}
 #endregion
 
 public static class PublicDefinitions

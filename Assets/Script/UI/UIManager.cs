@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance {  get { return _instance; } }
 
     public UIGauge gaugeUI;
+    public GameObject DescriptionUI;
 
     private void Awake()
     {
