@@ -28,7 +28,7 @@ public class Player : MonoBehaviour, IFallable
         condition = GetComponent<PlayerCondition>();
     }
 
-    public void OnInteract(InputAction.CallbackContext context)
+    public void OnInteract(InputAction.CallbackContext context) 
     {
         if(context.phase == InputActionPhase.Started)
         {
