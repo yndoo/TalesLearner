@@ -377,7 +377,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DefaultMoveSpeed: 13
-  JumpPower: 1000
+  JumpPower: 5000
   _curMoveSpeed: 0
 --- !u!54 &2917411388204645541
 Rigidbody:
@@ -387,7 +387,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9172804498293414011}
   serializedVersion: 4
-  m_Mass: 100
+  m_Mass: 300
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -457,3 +457,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
   condition: {fileID: 0}
+  curUsableItem: {fileID: 0}
