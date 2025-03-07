@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour, ISuperJumpable
 
     private void Move()
     {
-        if(isDashMode)
+        if(isDashMode && CharacterManager.Instance.Player.condition.CanUseStamina())
         {
             CurMoveSpeed += 0.2f;
             CharacterManager.Instance.Player.condition.UseStamina();
@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour, ISuperJumpable
 
     public void OnDash(InputAction.CallbackContext context)
     {
-        if(context.phase == InputActionPhase.Started)
+        if(context.phase == InputActionPhase.Started && CharacterManager.Instance.Player.condition.CanUseStamina())
         {
             isDashMode = true;
         }

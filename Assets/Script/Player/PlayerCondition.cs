@@ -19,6 +19,11 @@ public class PlayerCondition : MonoBehaviour
         PassiveStamina();
     }
 
+    public bool CanUseStamina()
+    {
+        return curStamina >= 1;
+    }
+
     private void PassiveStamina()
     {
         curStamina += 0.3f;

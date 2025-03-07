@@ -38,7 +38,7 @@ public class ItemObject : MonoBehaviour, IUsable
         {
             if(CharacterManager.Instance.Player.curUsableItem != null)
             {
-                Destroy(CharacterManager.Instance.Player.curUsableItem);
+                Destroy(CharacterManager.Instance.Player.curUsableItem.gameObject);
             }
             CharacterManager.Instance.Player.curUsableItem = this;
             transform.parent = CharacterManager.Instance.Player.transform;
