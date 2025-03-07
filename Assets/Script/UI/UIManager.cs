@@ -16,7 +16,20 @@ public class UIManager : MonoBehaviour
         if(_instance == null)
         {
             _instance = this;
+            UIInitialize();
             DontDestroyOnLoad(gameObject);
+        }
+    }
+
+    private void UIInitialize()
+    {
+        if(gaugeUI == null)
+        {
+            gaugeUI = Instantiate(Resources.Load("UIs/GameHUD")).GetComponentInChildren<UIGauge>();
+        }
+        if(DescriptionUI == null)
+        {
+            DescriptionUI = Instantiate(Resources.Load("UIs/UIDescription") as GameObject);
         }
     }
 }
