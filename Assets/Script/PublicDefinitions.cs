@@ -7,7 +7,8 @@ public enum ItemType
 {
     SpeedItem,
     AddDash,
-    Shield
+    Shield,
+    End,
 }
 
 public enum DescUIType

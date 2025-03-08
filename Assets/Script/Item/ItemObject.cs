@@ -26,7 +26,7 @@ public class ItemObject : MonoBehaviour, IUsable
                 break;
             case ItemType.AddDash:
                 CharacterManager.Instance.Player.condition.AddStamina(data.abilityValue);
-                Destroy(gameObject);
+                ItemPool.Instance.Return(this);
                 break;
         }
     }
@@ -38,7 +38,8 @@ public class ItemObject : MonoBehaviour, IUsable
         {
             if(CharacterManager.Instance.Player.curUsableItem != null)
             {
-                Destroy(CharacterManager.Instance.Player.curUsableItem.gameObject);
+                ItemPool.Instance.Return(this);
+                //Destroy(CharacterManager.Instance.Player.curUsableItem.gameObject);
             }
             CharacterManager.Instance.Player.curUsableItem = this;
             transform.parent = CharacterManager.Instance.Player.transform;
@@ -53,7 +54,7 @@ public class ItemObject : MonoBehaviour, IUsable
         // 원래 상태로 돌려놓기
         PublicDefinitions.MaxSpeed = prevMaxSpeed;
         CharacterManager.Instance.Player.controller.CurMoveSpeed = prevMaxSpeed;
-        Destroy(gameObject);
+        ItemPool.Instance.Return(this);
     }
     IEnumerator ShieldOffCoroutine()
     {
