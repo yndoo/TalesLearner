@@ -28,7 +28,6 @@ public class TutorialPlayer : MonoBehaviour
             RaycastHit hit;
             if(Physics.Raycast(ray, out hit, maxCheckDistance, checkLayer))
             {
-                //Debug.Log("오브젝트 감지");
                 hit.collider.gameObject.GetComponent<TutorialObject>().SetTutorialUI();
             }
             else
