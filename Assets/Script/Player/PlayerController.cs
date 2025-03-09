@@ -32,9 +32,18 @@ public class PlayerController : MonoBehaviour, ISuperJumpable
     [SerializeField] private float _curMoveSpeed;
     public LayerMask groundLayerMask;
 
+    // 캐릭터 & 카메라 회전 관련
+    [Header("Rotation")]
+    public Transform CameraContainer;
+    public Transform MeshTransform;
+    private float curCamXRot;
+    private float minCamXRot;
+    private float maxCamXRot;
+
     private Vector2 curMovementInput;
     private Rigidbody _rigidbody;
     private Animator _animator;
+    private Vector3 curDir;
 
     private bool isDashMode = false;
     private bool isJumping = false;
@@ -61,6 +70,7 @@ public class PlayerController : MonoBehaviour, ISuperJumpable
 
     private void Move()
     {
+        // 대쉬 적용
         if (isDashMode && CharacterManager.Instance.Player.condition.CanUseStamina())
         {
             CurMoveSpeed += 0.2f;
@@ -71,11 +81,22 @@ public class PlayerController : MonoBehaviour, ISuperJumpable
             CurMoveSpeed -= 0.2f;
         }
 
-        Vector3 dir = transform.forward * curMovementInput.y + transform.right * curMovementInput.x;
-        dir *= CurMoveSpeed;
-        dir.y = _rigidbody.velocity.y;
+        // 방향 적용
+        curDir = transform.forward * curMovementInput.y + transform.right * curMovementInput.x;
+        if (curDir.magnitude > 0.01f)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(curDir);
+            MeshTransform.rotation = Quaternion.Slerp(MeshTransform.rotation, targetRotation, Time.deltaTime * 10f);
+        }
 
-        _rigidbody.velocity = dir;
+        // 이동 속도 적용
+        curDir *= CurMoveSpeed;
+        curDir.y = _rigidbody.velocity.y;
+
+        _rigidbody.velocity = curDir;
+
+        // 카메라 회전 적용
+        // TODO : minCamXRot~max 범위 넘어가면 카메라 돌려주는 코드 추가하기?
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -122,8 +143,6 @@ public class PlayerController : MonoBehaviour, ISuperJumpable
     private bool IsGround()
     {
         Ray ray = new Ray(transform.position + transform.up * 0.01f, Vector3.down);
-        Debug.DrawRay(transform.position, Vector3.down * 0.05f, Color.red);
-        bool res = Physics.Raycast(ray, 0.05f, groundLayerMask);
-        return res;
+        return Physics.Raycast(ray, 0.05f, groundLayerMask);
     }
 }
