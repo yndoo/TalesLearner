@@ -30,12 +30,14 @@ public class PlayerController : MonoBehaviour, ISuperJumpable
         }
     }
     [SerializeField] private float _curMoveSpeed;
+    public LayerMask groundLayerMask;
 
     private Vector2 curMovementInput;
     private Rigidbody _rigidbody;
     private Animator _animator;
 
     private bool isDashMode = false;
+    private bool isJumping = false;
 
     private void Awake()
     {
@@ -49,6 +51,12 @@ public class PlayerController : MonoBehaviour, ISuperJumpable
     private void FixedUpdate()
     {
         Move();
+
+        if(isJumping && IsGround())
+        {
+            isJumping = false;
+            _animator.SetBool(IsJumping, false);
+        }
     }
 
     private void Move()
@@ -88,6 +96,7 @@ public class PlayerController : MonoBehaviour, ISuperJumpable
     {
         if(context.phase == InputActionPhase.Started)
         {
+            isJumping = true;
             _animator.SetBool(IsJumping, true);
             _rigidbody.AddForce(Vector3.up * JumpPower, ForceMode.Impulse);
         }
@@ -108,5 +117,13 @@ public class PlayerController : MonoBehaviour, ISuperJumpable
     public void SuperJump()
     {
         _rigidbody.AddForce(Vector3.up * JumpPower * 2, ForceMode.Impulse);
+    }
+
+    private bool IsGround()
+    {
+        Ray ray = new Ray(transform.position + transform.up * 0.01f, Vector3.down);
+        Debug.DrawRay(transform.position, Vector3.down * 0.05f, Color.red);
+        bool res = Physics.Raycast(ray, 0.05f, groundLayerMask);
+        return res;
     }
 }

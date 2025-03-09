@@ -181,6 +181,9 @@ MonoBehaviour:
   DefaultMoveSpeed: 13
   JumpPower: 5000
   _curMoveSpeed: 0
+  groundLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!54 &7957567126775501882
 Rigidbody:
   m_ObjectHideFlags: 0
