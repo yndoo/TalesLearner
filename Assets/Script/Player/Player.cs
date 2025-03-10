@@ -30,7 +30,7 @@ public class Player : MonoBehaviour, IFallable, IDamagable
 
     private void Start()
     {
-        Cursor.visible = false;
+        //Cursor.visible = false;
     }
 
     public void OnInteract(InputAction.CallbackContext context) 

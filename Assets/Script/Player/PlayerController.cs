@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.XR;
 
 public class PlayerController : MonoBehaviour, ISuperJumpable
 {
@@ -38,6 +39,10 @@ public class PlayerController : MonoBehaviour, ISuperJumpable
     [Header("Rotation")]
     public Transform CameraContainer;
     public Transform MeshTransform;
+    //private float threshold = 90f;
+    //private float rotationSpeed = 2;
+    //private float lastAngle;
+
 
     private Vector2 curMovementInput;
     private Rigidbody _rigidbody;
@@ -102,7 +107,18 @@ public class PlayerController : MonoBehaviour, ISuperJumpable
         if (curDir.magnitude > 0.01f)
         {
             Quaternion targetRotation = Quaternion.LookRotation(curDir);
-            MeshTransform.rotation = Quaternion.Slerp(MeshTransform.rotation, targetRotation, Time.deltaTime * 10f);
+            MeshTransform.rotation = Quaternion.Slerp(MeshTransform.rotation, targetRotation, Time.deltaTime * 10f); // 메쉬 회전
+
+            //float curAngle = transform.rotation.eulerAngles.y;
+            //float angleDiff = Mathf.Abs(Mathf.DeltaAngle(lastAngle, curAngle));
+            //if(angleDiff >= threshold)
+            //{
+            //    float newRealAngle = Mathf.Round(curAngle / 90f) * 90f; // 90도 단위로 나누기
+            //    StartCoroutine(RotateLerp(newRealAngle));
+
+            //    // TODO : 메쉬도 반대로 돌려주기
+            //    lastAngle = newRealAngle;
+            //}
         }
 
         // 이동 속도 적용
@@ -121,6 +137,8 @@ public class PlayerController : MonoBehaviour, ISuperJumpable
         _animator.speed = CurMoveSpeed / DefaultMoveSpeed;
     }
 
+
+    #region 인풋 처리 함수
     public void OnMove(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
@@ -182,6 +200,7 @@ public class PlayerController : MonoBehaviour, ISuperJumpable
             UIManager.Instance.manualUI.ManualToggle();
         }
     }
+    #endregion
 
     public void SuperJump()
     {
