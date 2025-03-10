@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -45,6 +46,7 @@ public class PlayerController : MonoBehaviour, ISuperJumpable
     private Rigidbody _rigidbody;
     private Animator _animator;
     private Vector3 curDir;
+    private ParticleSystem dashVFX; 
 
     private bool isDashMode = false;
     private bool isJumping = false;
@@ -54,10 +56,12 @@ public class PlayerController : MonoBehaviour, ISuperJumpable
     {
         _rigidbody = GetComponent<Rigidbody>();
         _animator = GetComponentInChildren<Animator>();
+        dashVFX = GetComponentInChildren<ParticleSystem>();
     }
     private void Start()
     {
-        CurMoveSpeed = DefaultMoveSpeed;   
+        CurMoveSpeed = DefaultMoveSpeed;
+        dashVFX.Stop();
     }
     private void FixedUpdate()
     {
@@ -149,9 +153,7 @@ public class PlayerController : MonoBehaviour, ISuperJumpable
             if(isJumping == true && IsAlmostGround())
             {
                 // ÂøÁö ´ë½¬
-                Debug.Log("ÂøÁö´ë½¬¹ßµ¿");
-                CurMoveSpeed = PublicDefinitions.MaxSpeed;
-                CharacterManager.Instance.Player.condition.AddStamina(20);
+                StartCoroutine(LandingDash());
             }
         }
         else if(context.phase == InputActionPhase.Canceled)
@@ -178,5 +180,16 @@ public class PlayerController : MonoBehaviour, ISuperJumpable
     {
         Ray ray = new Ray(transform.position + transform.up * 0.01f, Vector3.down);
         return Physics.Raycast(ray, 5f, groundLayerMask);
+    }
+
+    IEnumerator LandingDash()
+    {
+        dashVFX.Play();
+        CurMoveSpeed = PublicDefinitions.MaxSpeed;
+        CharacterManager.Instance.Player.condition.AddStamina(20);
+
+        yield return new WaitForSeconds(1f);
+
+        dashVFX.Stop();
     }
 }
