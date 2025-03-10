@@ -412,6 +412,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 1d698828a51aca045afb32154dcdf919, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 98167e308cca4fb458ae044ba93d11e7, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

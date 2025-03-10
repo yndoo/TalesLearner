@@ -457,6 +457,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3619238869664516556, guid: 3cf83d717bad1b744805280a1f4e9f1d, type: 3}
+      propertyPath: JumpPower
+      value: 5000
+      objectReference: {fileID: 0}
+    - target: {fileID: 4954200940766535115, guid: 3cf83d717bad1b744805280a1f4e9f1d, type: 3}
+      propertyPath: m_WarningMessage
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4954200940766535115, guid: 3cf83d717bad1b744805280a1f4e9f1d, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6929287616798629357, guid: 3cf83d717bad1b744805280a1f4e9f1d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 60.1

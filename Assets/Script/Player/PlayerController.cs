@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour, ISuperJumpable
 {
     private static readonly int IsRunning = Animator.StringToHash("IsRunning");
     private static readonly int IsJumping = Animator.StringToHash("IsJumping");
+    private static readonly int IsDoubleJump = Animator.StringToHash("IsDoubleJump");
 
     public float DefaultMoveSpeed;
     public float JumpPower;
@@ -47,6 +48,7 @@ public class PlayerController : MonoBehaviour, ISuperJumpable
 
     private bool isDashMode = false;
     private bool isJumping = false;
+    private bool isDoubleJumping = false;
 
     private void Awake()
     {
@@ -64,7 +66,9 @@ public class PlayerController : MonoBehaviour, ISuperJumpable
         if(isJumping && IsGround())
         {
             isJumping = false;
+            isDoubleJumping = false;
             _animator.SetBool(IsJumping, false);
+            _animator.SetBool(IsDoubleJump, false);
         }
     }
 
@@ -117,8 +121,17 @@ public class PlayerController : MonoBehaviour, ISuperJumpable
     {
         if(context.phase == InputActionPhase.Started)
         {
+            if(isJumping && !IsGround())
+            {
+                isDoubleJumping = true;
+                _animator.SetBool(IsDoubleJump, true);
+                _rigidbody.AddForce(Vector3.up * JumpPower, ForceMode.Impulse);
+                return;
+            }
+
             isJumping = true;
             _animator.SetBool(IsJumping, true);
+            transform.position += transform.up;
             _rigidbody.AddForce(Vector3.up * JumpPower, ForceMode.Impulse);
         }
     }
@@ -143,6 +156,6 @@ public class PlayerController : MonoBehaviour, ISuperJumpable
     private bool IsGround()
     {
         Ray ray = new Ray(transform.position + transform.up * 0.01f, Vector3.down);
-        return Physics.Raycast(ray, 0.05f, groundLayerMask);
+        return Physics.Raycast(ray, 0.02f, groundLayerMask);
     }
 }
