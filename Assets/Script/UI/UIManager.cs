@@ -40,6 +40,7 @@ public class UIManager : MonoBehaviour
         if(DescriptionUI == null)
         {
             DescriptionUI = Instantiate(Resources.Load("UIs/UIDescription") as GameObject);
+            DescriptionUI.SetActive(false);
         }
     }
 }
