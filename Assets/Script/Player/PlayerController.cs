@@ -173,6 +173,14 @@ public class PlayerController : MonoBehaviour, ISuperJumpable
         }
     }
 
+    public void OnManual (InputAction.CallbackContext context)
+    {
+        if(context.phase == InputActionPhase.Started)
+        {
+            UIManager.Instance.manualUI.ManualToggle();
+        }
+    }
+
     public void SuperJump()
     {
         isJumping = true;

@@ -11,5 +11,5 @@ public class TutorialData : ScriptableObject
     public string description;
 
     [Header("UI")]
-    public Image uiImage;
+    public Sprite uiImage;
 }

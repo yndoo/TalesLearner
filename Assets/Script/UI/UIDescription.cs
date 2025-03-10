@@ -11,10 +11,10 @@ public class UIDescription : MonoBehaviour
     public TextMeshProUGUI txtDesc;
     public Image image;
 
-    public void SetUI(string _title, string _desc, Image _image)
+    public void SetUI(string _title, string _desc, Sprite _image)
     {
         txtTitle.text = _title;
         txtDesc.text = _desc;
-        image = _image;
+        image.sprite = _image;
     }
 }

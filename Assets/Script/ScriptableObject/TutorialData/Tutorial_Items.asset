@@ -15,4 +15,4 @@ MonoBehaviour:
   title: "\uC544\uC774\uD15C \uC0AC\uC6A9\uD574\uBCF4\uAE30"
   description: "\uC544\uC774\uD15C\uC744 \uD68D\uB4DD\uD558\uACE0 Shift\uD0A4\uB97C
     \uB20C\uB7EC \uC0AC\uC6A9\uD574\uBCF4\uC138\uC694."
-  uiImage: {fileID: 0}
+  uiImage: {fileID: -890755455, guid: d68e576980261234c92577c14e84f9d7, type: 3}

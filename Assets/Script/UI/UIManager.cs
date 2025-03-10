@@ -19,6 +19,7 @@ public class UIManager : MonoBehaviour
     }   
 
     public UIGauge gaugeUI;
+    public UIManual manualUI;
     public GameObject DescriptionUI;
     public GameObject SpeedLineEffect;
 
@@ -37,6 +38,10 @@ public class UIManager : MonoBehaviour
         if(gaugeUI == null)
         {
             gaugeUI = Instantiate(Resources.Load("UIs/GameHUD")).GetComponentInChildren<UIGauge>();
+        }
+        if (manualUI == null)
+        {
+            manualUI = Instantiate(Resources.Load("UIs/Manual")).GetComponent<UIManual>();
         }
         if(DescriptionUI == null)
         {
