@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: "\uC288\uD37C\uC810\uD504 \uC774\uC6A9\uD574\uBCF4\uAE30"
   description: "\uC288\uD37C\uC810\uD504\uB300\uB97C \uBC1F\uC544 \uB192\uC740 \uACF3\uC5D0
-    \uC62C\uB77C\uAC00\uBCF4\uC138\uC694."
-  uiImage: {fileID: 0}
+    \uC62C\uB77C\uAC00\uBCF4\uC138\uC694. \uCC29\uC9C0\uB300\uC26C\uB97C \uC0AC\uC6A9\uD558\uAE30
+    \uB354 \uC27D\uC2B5\uB2C8\uB2E4."
+  uiImage: {fileID: -281690070, guid: 18fb6f92f87e12f4d8670018139b1181, type: 3}

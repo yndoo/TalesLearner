@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 85090dd725c409d45b634a66718ec3de, type: 3}
-  m_Name: Tutorial_Tab
+  m_Name: Tutorial_Anger
   m_EditorClassIdentifier: 
-  title: "\uC870\uC791\uBC95 \uC775\uD788\uAE30"
-  description: "Tab\uD0A4\uB97C \uB20C\uB7EC \uC870\uC791\uBC95\uC744 \uD655\uC778\uD558\uC138\uC694."
-  uiImage: {fileID: 1057489447, guid: defc8d216546bce4f92be9137a646e8f, type: 3}
+  title: "\uBD84\uB178 \uC0AC\uC6A9\uD558\uAE30"
+  description: "\uBD84\uB178 \uAC8C\uC774\uC9C0\uB97C \uBAA8\uC544 \uC0AC\uC6A9\uD574\uBCF4\uC138\uC694."
+  uiImage: {fileID: 21300000, guid: 5723e790dbf33fd49bb7e8cabfc3f388, type: 3}

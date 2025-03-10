@@ -4,7 +4,7 @@ using System.Threading;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Player : MonoBehaviour, IFallable
+public class Player : MonoBehaviour, IFallable, IDamagable
 {
     public PlayerController controller;
     public PlayerCondition condition;
@@ -28,6 +28,11 @@ public class Player : MonoBehaviour, IFallable
         condition = GetComponent<PlayerCondition>();
     }
 
+    private void Start()
+    {
+        Cursor.visible = false;
+    }
+
     public void OnInteract(InputAction.CallbackContext context) 
     {
         if(context.phase == InputActionPhase.Started)
@@ -38,5 +43,10 @@ public class Player : MonoBehaviour, IFallable
                 curUsableItem = null;
             }
         }
+    }
+
+    public void Damage(float damage)
+    {
+        condition.AddDamage(damage);
     }
 }

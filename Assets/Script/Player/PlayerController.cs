@@ -38,9 +38,6 @@ public class PlayerController : MonoBehaviour, ISuperJumpable
     [Header("Rotation")]
     public Transform CameraContainer;
     public Transform MeshTransform;
-    private float curCamXRot;
-    private float minCamXRot;
-    private float maxCamXRot;
 
     private Vector2 curMovementInput;
     private Rigidbody _rigidbody;
@@ -51,6 +48,7 @@ public class PlayerController : MonoBehaviour, ISuperJumpable
     private bool isDashMode = false;
     private bool isJumping = false;
     private bool isDoubleJumping = false;
+    [HideInInspector] public bool isDamaged = false;
 
     private void Awake()
     {
@@ -88,6 +86,7 @@ public class PlayerController : MonoBehaviour, ISuperJumpable
         {
             CurMoveSpeed -= 0.2f;
         }
+
         // 속도 이펙트
         if (CurMoveSpeed >= 22)
         {
@@ -107,7 +106,10 @@ public class PlayerController : MonoBehaviour, ISuperJumpable
         }
 
         // 이동 속도 적용
-        curDir *= CurMoveSpeed;
+        if(!isDamaged)
+        {
+            curDir *= CurMoveSpeed;
+        }
         curDir.y = _rigidbody.velocity.y;
 
         _rigidbody.velocity = curDir;
@@ -135,9 +137,9 @@ public class PlayerController : MonoBehaviour, ISuperJumpable
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if(context.phase == InputActionPhase.Started)
+        if (context.phase == InputActionPhase.Started)
         {
-            if (isJumping && isDoubleJumping) return;
+            if (isDamaged || isDoubleJumping) return;
 
             if(isJumping && !IsGround()) // 2단 점프
             {
@@ -156,10 +158,10 @@ public class PlayerController : MonoBehaviour, ISuperJumpable
 
     public void OnDash(InputAction.CallbackContext context)
     {
-        if(context.phase == InputActionPhase.Started && CharacterManager.Instance.Player.condition.CanUseStamina())
+        if (context.phase == InputActionPhase.Started && CharacterManager.Instance.Player.condition.CanUseStamina())
         {
             isDashMode = true;
-            if(isJumping == true && IsAlmostGround())
+            if((isJumping || isDamaged) && IsAlmostGround())
             {
                 // 착지 대쉬
                 CurMoveSpeed = PublicDefinitions.MaxSpeed;
@@ -208,5 +210,12 @@ public class PlayerController : MonoBehaviour, ISuperJumpable
         yield return new WaitForSeconds(1f);
 
         dashVFX.Stop();
+    }
+
+    public void DamageModeActive()
+    {
+        isDamaged = true;
+        CurMoveSpeed = DefaultMoveSpeed;
+        _rigidbody.velocity = Vector3.zero;
     }
 }
