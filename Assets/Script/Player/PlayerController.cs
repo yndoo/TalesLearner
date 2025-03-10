@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour, ISuperJumpable
     {
         Move();
 
-        if(isJumping && IsGround())
+        if(isJumping && IsGround()) // 공중에 있지 않으면 되돌리기. 공중에 있는 동안 애니메이션 Falling Idle로 가있음. 
         {
             isJumping = false;
             isDoubleJumping = false;
@@ -101,6 +101,9 @@ public class PlayerController : MonoBehaviour, ISuperJumpable
 
         // 카메라 회전 적용
         // TODO : minCamXRot~max 범위 넘어가면 카메라 돌려주는 코드 추가하기?
+
+        // 애니메이션 속도 적용
+        _animator.speed = CurMoveSpeed / DefaultMoveSpeed;
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -121,14 +124,16 @@ public class PlayerController : MonoBehaviour, ISuperJumpable
     {
         if(context.phase == InputActionPhase.Started)
         {
-            if(isJumping && !IsGround())
+            if (isJumping && isDoubleJumping) return;
+
+            if(isJumping && !IsGround()) // 2단 점프
             {
                 isDoubleJumping = true;
                 _animator.SetBool(IsDoubleJump, true);
                 _rigidbody.AddForce(Vector3.up * JumpPower, ForceMode.Impulse);
                 return;
             }
-
+            // 1단 점프
             isJumping = true;
             _animator.SetBool(IsJumping, true);
             transform.position += transform.up;
@@ -141,6 +146,13 @@ public class PlayerController : MonoBehaviour, ISuperJumpable
         if(context.phase == InputActionPhase.Started && CharacterManager.Instance.Player.condition.CanUseStamina())
         {
             isDashMode = true;
+            if(isJumping == true && IsAlmostGround())
+            {
+                // 착지 대쉬
+                Debug.Log("착지대쉬발동");
+                CurMoveSpeed = PublicDefinitions.MaxSpeed;
+                CharacterManager.Instance.Player.condition.AddStamina(20);
+            }
         }
         else if(context.phase == InputActionPhase.Canceled)
         {
@@ -150,12 +162,21 @@ public class PlayerController : MonoBehaviour, ISuperJumpable
 
     public void SuperJump()
     {
+        isJumping = true;
+        isDoubleJumping = true;
+
         _rigidbody.AddForce(Vector3.up * JumpPower * 2, ForceMode.Impulse);
     }
 
     private bool IsGround()
     {
         Ray ray = new Ray(transform.position + transform.up * 0.01f, Vector3.down);
-        return Physics.Raycast(ray, 0.02f, groundLayerMask);
+        return Physics.Raycast(ray, 0.5f, groundLayerMask);
+    }
+
+    private bool IsAlmostGround()
+    {
+        Ray ray = new Ray(transform.position + transform.up * 0.01f, Vector3.down);
+        return Physics.Raycast(ray, 5f, groundLayerMask);
     }
 }

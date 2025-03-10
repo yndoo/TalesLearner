@@ -24,7 +24,7 @@ public class TutorialPlayer : MonoBehaviour
 
             // Ray 쏴서 튜토리얼 오브젝트 체크
             Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-            Debug.DrawRay(playerCamera.transform.position, playerCamera.transform.forward * maxCheckDistance, Color.red);
+            //Debug.DrawRay(playerCamera.transform.position, playerCamera.transform.forward * maxCheckDistance, Color.red);
             RaycastHit hit;
             if(Physics.Raycast(ray, out hit, maxCheckDistance, checkLayer))
             {
