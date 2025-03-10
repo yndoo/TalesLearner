@@ -20,6 +20,7 @@ public class UIManager : MonoBehaviour
 
     public UIGauge gaugeUI;
     public GameObject DescriptionUI;
+    public GameObject SpeedLineEffect;
 
     private void Awake()
     {
@@ -41,6 +42,11 @@ public class UIManager : MonoBehaviour
         {
             DescriptionUI = Instantiate(Resources.Load("UIs/UIDescription") as GameObject);
             DescriptionUI.SetActive(false);
+        }
+        if(SpeedLineEffect == null)
+        {
+            SpeedLineEffect = Instantiate(Resources.Load("UIs/SpeedLine") as GameObject);
+            SpeedLineEffect.SetActive(false);
         }
     }
 }

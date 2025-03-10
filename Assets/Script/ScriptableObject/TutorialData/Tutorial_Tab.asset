@@ -10,9 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 85090dd725c409d45b634a66718ec3de, type: 3}
-  m_Name: Tutorial_Items
+  m_Name: Tutorial_Tab
   m_EditorClassIdentifier: 
-  title: "\uC544\uC774\uD15C \uC0AC\uC6A9\uD574\uBCF4\uAE30"
-  description: "\uC544\uC774\uD15C\uC744 \uD68D\uB4DD\uD558\uACE0 Shift\uD0A4\uB97C
-    \uB20C\uB7EC \uC0AC\uC6A9\uD574\uBCF4\uC138\uC694."
+  title: "\uC870\uC791\uBC95 \uC775\uD788\uAE30"
+  description: "Tab\uD0A4\uB97C \uB20C\uB7EC \uC870\uC791\uBC95\uC744 \uD655\uC778\uD558\uC138\uC694."
   uiImage: {fileID: 0}

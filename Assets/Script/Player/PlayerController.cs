@@ -88,6 +88,15 @@ public class PlayerController : MonoBehaviour, ISuperJumpable
         {
             CurMoveSpeed -= 0.2f;
         }
+        // 속도 이펙트
+        if (CurMoveSpeed >= 22)
+        {
+            UIManager.Instance.SpeedLineEffect.SetActive(true);
+        }
+        else
+        {
+            UIManager.Instance.SpeedLineEffect.SetActive(false);
+        }
 
         // 방향 적용
         curDir = transform.forward * curMovementInput.y + transform.right * curMovementInput.x;
@@ -102,14 +111,6 @@ public class PlayerController : MonoBehaviour, ISuperJumpable
         curDir.y = _rigidbody.velocity.y;
 
         _rigidbody.velocity = curDir;
-        //if(_rigidbody.velocity.magnitude >= 21.5)
-        //{
-        //    dashVFX.Play();
-        //}
-        //else
-        //{
-        //    dashVFX.Stop();
-        //}
 
         // 카메라 회전 적용
         // TODO : minCamXRot~max 범위 넘어가면 카메라 돌려주는 코드 추가하기?
