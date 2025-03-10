@@ -5,21 +5,40 @@ using UnityEngine;
 public class ItemSpawner : MonoBehaviour
 {
     public List<Vector3> spawnPosition;
+    public List<ItemObject> spawnedObjects;
+
+    private float updateTerm = 5f;
+    private float lastUpdateTime = 0;
 
     private void Awake()
     {
-        //spawnPosition = new List<Vector3>
-        //    {
-        //        new Vector3(0, 0, 0),
-        //        new Vector3(2, 2, 2),
-        //    };
+        spawnedObjects = new List<ItemObject>();
     }
 
     private void Start()
     {
-        for(int i = 0; i < spawnPosition.Count; i++)
+        for (int i = 0; i < spawnPosition.Count; i++)
         {
-            ItemPool.Instance.Get().transform.localPosition = spawnPosition[i];
+            ItemObject item = ItemPool.Instance.Get();
+            spawnedObjects.Add(item);
+            item.transform.localPosition = spawnPosition[i];
+        }
+    }
+    private void Update()
+    {
+        if(Time.time -  lastUpdateTime > updateTerm)
+        {
+            lastUpdateTime = Time.time;
+
+            for (int i = 0; i < spawnedObjects.Count; i++)
+            {
+                if (spawnedObjects[i].gameObject.activeSelf == false)
+                {
+                    ItemObject item = ItemPool.Instance.Get();
+                    spawnedObjects[i] = item;
+                    item.transform.localPosition = spawnPosition[i];
+                }
+            }
         }
     }
 }

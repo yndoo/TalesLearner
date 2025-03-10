@@ -11,15 +11,18 @@ public class ItemObject : MonoBehaviour, IUsable
 {
     public ItemData data;
 
+    private void Update()
+    {
+        transform.Rotate(0, 50 * Time.deltaTime, 0);
+    }
+
     public void OnUse()
     {
         Debug.Log("사용됨");
         switch (data.type)
         {
             case ItemType.SpeedItem:
-                StartCoroutine(BoostOffCoroutine(PublicDefinitions.MaxSpeed));
-                PublicDefinitions.MaxSpeed = 50f;
-                CharacterManager.Instance.Player.controller.CurMoveSpeed = PublicDefinitions.MaxSpeed;
+                StartCoroutine(BoostCoroutine());
                 break;
             case ItemType.Shield:
                 // TODO : 쉴드 장착
@@ -38,8 +41,7 @@ public class ItemObject : MonoBehaviour, IUsable
         {
             if(CharacterManager.Instance.Player.curUsableItem != null)
             {
-                ItemPool.Instance.Return(this);
-                //Destroy(CharacterManager.Instance.Player.curUsableItem.gameObject);
+                ItemPool.Instance.Return(CharacterManager.Instance.Player.curUsableItem);
             }
             CharacterManager.Instance.Player.curUsableItem = this;
             transform.parent = CharacterManager.Instance.Player.transform;
@@ -47,21 +49,15 @@ public class ItemObject : MonoBehaviour, IUsable
         }
     }
 
-    IEnumerator BoostOffCoroutine(float prevMaxSpeed)
+    IEnumerator BoostCoroutine()
     {
+        PublicDefinitions.MaxSpeed = 50f;
+        CharacterManager.Instance.Player.controller.CurMoveSpeed = PublicDefinitions.MaxSpeed;
+
         yield return new WaitForSeconds(data.abilityValue);
 
         // 원래 상태로 돌려놓기
-        PublicDefinitions.MaxSpeed = prevMaxSpeed;
-        CharacterManager.Instance.Player.controller.CurMoveSpeed = prevMaxSpeed;
+        CharacterManager.Instance.Player.controller.CurMoveSpeed = PublicDefinitions.MaxSpeed = PublicDefinitions.DefaultMaxSpeed;
         ItemPool.Instance.Return(this);
-    }
-    IEnumerator ShieldOffCoroutine()
-    {
-        yield return new WaitForSeconds(data.abilityValue);
-
-        // TODO : 쉴드 없애기
-
-        Destroy(gameObject);
     }
 }

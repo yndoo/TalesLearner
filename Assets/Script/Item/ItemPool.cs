@@ -18,7 +18,7 @@ public class ItemPool : MonoBehaviour
             return instance;
         }
     }
-    //private Dictionary<ItemType, ObjectPool<ItemObject>> pool = new Dictionary<ItemType, ObjectPool<ItemObject>>(); // 아이템 타입별 풀
+
     private ObjectPool<ItemObject> pool;
 
     public List<ItemObject> itemPrefabs;

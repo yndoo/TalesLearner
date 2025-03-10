@@ -27,5 +27,6 @@ public static class PublicDefinitions
     public static float MaxStamina = 200f;
     public static float MaxDamage = 100f;
     public static float MaxSpeed = 22f;
+    public readonly static float DefaultMaxSpeed = 22f;
     #endregion
 }

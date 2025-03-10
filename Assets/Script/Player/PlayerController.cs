@@ -102,6 +102,14 @@ public class PlayerController : MonoBehaviour, ISuperJumpable
         curDir.y = _rigidbody.velocity.y;
 
         _rigidbody.velocity = curDir;
+        //if(_rigidbody.velocity.magnitude >= 21.5)
+        //{
+        //    dashVFX.Play();
+        //}
+        //else
+        //{
+        //    dashVFX.Stop();
+        //}
 
         // 카메라 회전 적용
         // TODO : minCamXRot~max 범위 넘어가면 카메라 돌려주는 코드 추가하기?
@@ -153,7 +161,9 @@ public class PlayerController : MonoBehaviour, ISuperJumpable
             if(isJumping == true && IsAlmostGround())
             {
                 // 착지 대쉬
-                StartCoroutine(LandingDash());
+                CurMoveSpeed = PublicDefinitions.MaxSpeed;
+                CharacterManager.Instance.Player.condition.AddStamina(20);
+                StartCoroutine(SpeedEffect());
             }
         }
         else if(context.phase == InputActionPhase.Canceled)
@@ -182,11 +192,9 @@ public class PlayerController : MonoBehaviour, ISuperJumpable
         return Physics.Raycast(ray, 5f, groundLayerMask);
     }
 
-    IEnumerator LandingDash()
+    IEnumerator SpeedEffect()
     {
         dashVFX.Play();
-        CurMoveSpeed = PublicDefinitions.MaxSpeed;
-        CharacterManager.Instance.Player.condition.AddStamina(20);
 
         yield return new WaitForSeconds(1f);
 
