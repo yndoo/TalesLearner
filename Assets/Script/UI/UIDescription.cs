@@ -17,4 +17,5 @@ public class UIDescription : MonoBehaviour
         txtDesc.text = _desc;
         image.sprite = _image;
     }
+
 }

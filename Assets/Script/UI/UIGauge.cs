@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,6 +8,7 @@ public class UIGauge : MonoBehaviour
 {
     public Image Stamina;
     public Image Damage;
+    public GameObject SysInfoUI;
 
     /// <summary>
     /// 스테미나와 데미지 게이지 모두 업데이트 해주는 함수

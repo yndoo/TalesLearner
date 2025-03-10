@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -20,6 +21,7 @@ public class UIManager : MonoBehaviour
 
     public UIGauge gaugeUI;
     public UIManual manualUI;
+    public GameObject SysInfoUI;
     public GameObject DescriptionUI;
     public GameObject SpeedLineEffect;
 
@@ -37,7 +39,9 @@ public class UIManager : MonoBehaviour
     {
         if(gaugeUI == null)
         {
-            gaugeUI = Instantiate(Resources.Load("UIs/GameHUD")).GetComponentInChildren<UIGauge>();
+            GameObject go = Instantiate(Resources.Load("UIs/GameHUD")) as GameObject;
+            gaugeUI = go.GetComponentInChildren<UIGauge>();
+            SysInfoUI = gaugeUI.SysInfoUI;
         }
         if (manualUI == null)
         {

@@ -11,6 +11,11 @@ public class TutorialObject : MonoBehaviour
         UIManager.Instance.DescriptionUI.GetComponent<UIDescription>().SetUI(data.title, data.description, data.uiImage);
         UIManager.Instance.DescriptionUI.SetActive(true);
     }
+    public void SetInfoUI()
+    {
+        UIManager.Instance.SysInfoUI.GetComponent<UISystemInfo>().SetUI(data.description);
+        UIManager.Instance.SysInfoUI.SetActive(true);
+    }
 
     private void OnTriggerEnter(Collider other)
     {
