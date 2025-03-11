@@ -43,6 +43,7 @@ public class SoundManager : MonoBehaviour
     private void Start()
     {
         sfxSource.volume = 0.6f;
+        bgmSource.volume = 0.8f;
         PlayBGM(EBGMType.Normal);
     }
 
