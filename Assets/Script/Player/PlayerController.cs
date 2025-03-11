@@ -164,6 +164,7 @@ public class PlayerController : MonoBehaviour, ISuperJumpable
                 isDoubleJumping = true;
                 _animator.SetBool(IsDoubleJump, true);
                 _rigidbody.AddForce(Vector3.up * JumpPower, ForceMode.Impulse);
+                SoundManager.Instance.PlaySFX(ESFXType.DoubleJump);
                 return;
             }
             // 1´Ü Á¡ÇÁ
@@ -171,6 +172,7 @@ public class PlayerController : MonoBehaviour, ISuperJumpable
             _animator.SetBool(IsJumping, true);
             transform.position += transform.up;
             _rigidbody.AddForce(Vector3.up * JumpPower, ForceMode.Impulse);
+            SoundManager.Instance.PlaySFX(ESFXType.Jump);
         }
     }
 
@@ -227,6 +229,7 @@ public class PlayerController : MonoBehaviour, ISuperJumpable
         isDoubleJumping = true;
 
         _rigidbody.AddForce(Vector3.up * JumpPower * 2, ForceMode.Impulse);
+        SoundManager.Instance.PlaySFX(ESFXType.SuperJump);
     }
 
     private bool IsGround()

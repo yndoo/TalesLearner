@@ -10,6 +10,7 @@ public class Player : MonoBehaviour, IFallable, IDamagable
     public PlayerCondition condition;
     public ItemObject curUsableItem;
 
+
     public void TakeFallDamage(float amount)
     {
         condition.AddDamage(amount);
@@ -33,6 +34,14 @@ public class Player : MonoBehaviour, IFallable, IDamagable
     private void Start()
     {
         //Cursor.visible = false;
+        if(!TryGetComponent<TutorialPlayer>(out TutorialPlayer tp))
+        {
+            SoundManager.Instance.PlayBGM(EBGMType.GameBGM);
+        }
+        else
+        {
+            SoundManager.Instance.PlayBGM(EBGMType.Normal);
+        }
     }
 
     public void OnInteract(InputAction.CallbackContext context) 

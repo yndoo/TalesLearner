@@ -25,6 +25,21 @@ public enum EGameState
     GameStart,
     GameEnd,
 }
+public enum EBGMType
+{
+    Normal,
+    GameBGM,
+    Victory,
+}
+
+public enum ESFXType
+{
+    Damaged,
+    Jump,
+    DoubleJump,
+    SuperJump,
+}
+
 #endregion
 
 public static class PublicDefinitions

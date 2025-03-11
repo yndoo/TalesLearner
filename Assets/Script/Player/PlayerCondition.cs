@@ -56,6 +56,7 @@ public class PlayerCondition : MonoBehaviour
             curDamage = PublicDefinitions.MaxDamage;
         }
         UIManager.Instance.GaugeUI.SetDamage(curDamage);
+        SoundManager.Instance.PlaySFX(ESFXType.Damaged);
     }
 
     public void AddStamina(float amount)

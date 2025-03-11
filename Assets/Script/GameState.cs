@@ -24,6 +24,7 @@ public class GameState : MonoBehaviour
                 
                 uiManager.SysInfoUI.SetActive(true);
                 uiManager.SysInfoUI.GetComponent<UISystemInfo>().SetUIFor5Seconds($"{uiManager.RecordUI.StopRecord()} 완주 성공");
+                SoundManager.Instance.PlayBGM(EBGMType.Victory);
                 break;
         }
     }
