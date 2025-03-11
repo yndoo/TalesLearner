@@ -21358,6 +21358,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7186301530643662120, guid: 615f7376e2fec43488485ff13538afb5, type: 3}
+      propertyPath: isRestart
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7186301530643662120, guid: 615f7376e2fec43488485ff13538afb5, type: 3}
       propertyPath: TeleportPosition.x
       value: 120
       objectReference: {fileID: 0}
@@ -59889,6 +59893,10 @@ PrefabInstance:
       value: 7.45
       objectReference: {fileID: 0}
     - target: {fileID: 7186301530643662120, guid: 615f7376e2fec43488485ff13538afb5, type: 3}
+      propertyPath: isRestart
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7186301530643662120, guid: 615f7376e2fec43488485ff13538afb5, type: 3}
       propertyPath: TeleportPosition.x
       value: 4
       objectReference: {fileID: 0}
@@ -84876,6 +84884,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TeleportPosition: {x: 106, y: 6, z: 40}
+  isRestart: 0
 --- !u!1001 &8606385191316197260
 PrefabInstance:
   m_ObjectHideFlags: 0

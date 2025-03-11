@@ -30,7 +30,7 @@ public class CurveDetect : MonoBehaviour
     IEnumerator Refresh()
     {
         GetComponent<Collider>().enabled = false;   
-        yield return new WaitForSeconds(0.02f);
+        yield return new WaitForSeconds(0.08f);
         GetComponent<Collider>().enabled = true;
     }
 }

@@ -36,6 +36,7 @@ public class UIRecord : MonoBehaviour
         if(curTime < savedRec)
         {
             PlayerPrefs.SetFloat(recordKey, curTime);
+            PlayerPrefs.Save();
             bestRec.text = curTime.ToString("N2");
         }
 
