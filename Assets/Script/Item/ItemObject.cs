@@ -21,13 +21,13 @@ public class ItemObject : MonoBehaviour, IUsable
         Debug.Log("»ç¿ëµÊ");
         switch (data.type)
         {
-            case ItemType.SpeedItem:
+            case EItemType.SpeedItem:
                 StartCoroutine(BoostCoroutine());
                 break;
-            case ItemType.Shield:
+            case EItemType.Shield:
                 // TODO : ½¯µå ÀåÂø
                 break;
-            case ItemType.AddDash:
+            case EItemType.AddDash:
                 CharacterManager.Instance.Player.condition.AddStamina(data.abilityValue);
                 ItemPool.Instance.Return(this);
                 break;
@@ -46,6 +46,12 @@ public class ItemObject : MonoBehaviour, IUsable
             CharacterManager.Instance.Player.curUsableItem = this;
             transform.parent = CharacterManager.Instance.Player.transform;
             transform.localPosition = new Vector3(0, 3, 0);
+
+            if(!other.gameObject.TryGetComponent<TutorialPlayer>(out TutorialPlayer t))
+            {
+                UIManager.Instance.SysInfoUI.SetActive(true);
+                UIManager.Instance.SysInfoUI.GetComponent<UISystemInfo>().SetUIFor5Seconds($"{data.itemName} Shift ´­·¯ »ç¿ë °¡´É");
+            }
         }
     }
 

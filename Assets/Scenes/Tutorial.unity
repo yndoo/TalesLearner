@@ -443,11 +443,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 649800486127580822, guid: b70fc84fd6fcf3c46a927894fb9a6af3, type: 3}
   m_PrefabInstance: {fileID: 7740836393129504999}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &569795365 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1306315837744236465, guid: 3cf83d717bad1b744805280a1f4e9f1d, type: 3}
-  m_PrefabInstance: {fileID: 4181517215432387715}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &589257871
 GameObject:
   m_ObjectHideFlags: 0
@@ -846,17 +841,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2079084601 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3619238869664516556, guid: 3cf83d717bad1b744805280a1f4e9f1d, type: 3}
-  m_PrefabInstance: {fileID: 4181517215432387715}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edf1703660026064a9eeb26a446c23d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!64 &160987361611622311
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2107,54 +2091,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 609944328537652984, guid: 3cf83d717bad1b744805280a1f4e9f1d, type: 3}
-      propertyPath: myTrans
-      value: 
-      objectReference: {fileID: 569795365}
-    - target: {fileID: 609944328537652984, guid: 3cf83d717bad1b744805280a1f4e9f1d, type: 3}
-      propertyPath: checkLayer.m_Bits
-      value: 128
-      objectReference: {fileID: 0}
-    - target: {fileID: 5072435391560104051, guid: 3cf83d717bad1b744805280a1f4e9f1d, type: 3}
-      propertyPath: m_ActionEvents.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5072435391560104051, guid: 3cf83d717bad1b744805280a1f4e9f1d, type: 3}
-      propertyPath: m_ActionEvents.Array.data[4].m_ActionId
-      value: a086c545-3af0-433c-9793-7ec0681a18fb
-      objectReference: {fileID: 0}
-    - target: {fileID: 5072435391560104051, guid: 3cf83d717bad1b744805280a1f4e9f1d, type: 3}
-      propertyPath: m_ActionEvents.Array.data[4].m_ActionName
-      value: Player/Manual[/Keyboard/tab]
-      objectReference: {fileID: 0}
-    - target: {fileID: 5072435391560104051, guid: 3cf83d717bad1b744805280a1f4e9f1d, type: 3}
-      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5072435391560104051, guid: 3cf83d717bad1b744805280a1f4e9f1d, type: 3}
-      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5072435391560104051, guid: 3cf83d717bad1b744805280a1f4e9f1d, type: 3}
-      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 2079084601}
-    - target: {fileID: 5072435391560104051, guid: 3cf83d717bad1b744805280a1f4e9f1d, type: 3}
-      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5072435391560104051, guid: 3cf83d717bad1b744805280a1f4e9f1d, type: 3}
-      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnManual
-      objectReference: {fileID: 0}
-    - target: {fileID: 5072435391560104051, guid: 3cf83d717bad1b744805280a1f4e9f1d, type: 3}
-      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: PlayerController, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 5072435391560104051, guid: 3cf83d717bad1b744805280a1f4e9f1d, type: 3}
-      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 6929287616798629357, guid: 3cf83d717bad1b744805280a1f4e9f1d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 60.6

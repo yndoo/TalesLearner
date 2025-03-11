@@ -13,8 +13,8 @@ public class TutorialObject : MonoBehaviour
     }
     public void SetInfoUI()
     {
-        UIManager.Instance.SysInfoUI.GetComponent<UISystemInfo>().SetUI(data.description);
         UIManager.Instance.SysInfoUI.SetActive(true);
+        UIManager.Instance.SysInfoUI.GetComponent<UISystemInfo>().SetUI(data.description);
     }
 
     private void OnTriggerEnter(Collider other)

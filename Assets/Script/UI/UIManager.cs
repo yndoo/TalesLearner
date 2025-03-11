@@ -17,13 +17,99 @@ public class UIManager : MonoBehaviour
             }
             return _instance;
         }
-    }   
+    }
 
-    public UIGauge gaugeUI;
-    public UIManual manualUI;
-    public GameObject SysInfoUI;
-    public GameObject DescriptionUI;
-    public GameObject SpeedLineEffect;
+    private UIGauge gaugeUI;
+    private UIManual manualUI;
+    private UIRecord recordUI;
+    private GameObject sysInfoUI;
+    private GameObject descriptionUI;
+    private GameObject speedLineEffect;
+    private GameObject gameHUD;
+
+    public UIGauge GaugeUI
+    {
+        get
+        {
+            if (gaugeUI == null)
+            {
+                gaugeUI = GameHUD.GetComponentInChildren<UIGauge>();
+                sysInfoUI = gaugeUI.SysInfoUI;
+                sysInfoUI.SetActive(false);
+            }
+            return gaugeUI;
+        }
+    }
+    public UIManual ManualUI
+    {
+        get
+        {
+            if (manualUI == null)
+            {
+                manualUI = Instantiate(Resources.Load("UIs/Manual")).GetComponent<UIManual>();
+            }
+            return manualUI;
+        }
+    }
+
+    public GameObject SysInfoUI
+    {
+        get
+        {
+            if(sysInfoUI == null)
+            {
+                sysInfoUI = GaugeUI.SysInfoUI;
+            }
+            return sysInfoUI;
+        }
+    }
+    public GameObject DescriptionUI
+    {
+        get
+        {
+            if (descriptionUI == null)
+            {
+                descriptionUI = Instantiate(Resources.Load("UIs/UIDescription") as GameObject);
+                descriptionUI.SetActive(false);
+            }
+            return descriptionUI;
+        }
+    }
+    public GameObject SpeedLineEffect
+    {
+        get
+        {
+            if (speedLineEffect == null)
+            {
+                speedLineEffect = Instantiate(Resources.Load("UIs/SpeedLine") as GameObject);
+                speedLineEffect.SetActive(false);
+            }
+            return speedLineEffect;
+        }
+    }
+    public GameObject GameHUD
+    {
+        get
+        {
+            if (gameHUD == null)
+            {
+                gameHUD = Instantiate(Resources.Load("UIs/GameHUD") as GameObject);
+            }
+            return gameHUD;
+        }
+    }
+
+    public UIRecord RecordUI
+    {
+        get
+        {
+            if (recordUI == null)
+            {
+                recordUI = GameHUD.GetComponentInChildren<UIRecord>();
+            }
+            return recordUI;
+        }
+    }
 
     private void Awake()
     {
@@ -39,23 +125,31 @@ public class UIManager : MonoBehaviour
     {
         if(gaugeUI == null)
         {
-            GameObject go = Instantiate(Resources.Load("UIs/GameHUD")) as GameObject;
-            gaugeUI = go.GetComponentInChildren<UIGauge>();
-            SysInfoUI = gaugeUI.SysInfoUI;
+            gaugeUI = GameHUD.GetComponentInChildren<UIGauge>();
+            sysInfoUI = gaugeUI.SysInfoUI;
+            sysInfoUI.SetActive(false);
         }
         if (manualUI == null)
         {
             manualUI = Instantiate(Resources.Load("UIs/Manual")).GetComponent<UIManual>();
         }
-        if(DescriptionUI == null)
+        if(descriptionUI == null)
         {
-            DescriptionUI = Instantiate(Resources.Load("UIs/UIDescription") as GameObject);
-            DescriptionUI.SetActive(false);
+            descriptionUI = Instantiate(Resources.Load("UIs/UIDescription") as GameObject);
+            descriptionUI.SetActive(false);
         }
-        if(SpeedLineEffect == null)
+        if(speedLineEffect == null)
         {
-            SpeedLineEffect = Instantiate(Resources.Load("UIs/SpeedLine") as GameObject);
-            SpeedLineEffect.SetActive(false);
+            speedLineEffect = Instantiate(Resources.Load("UIs/SpeedLine") as GameObject);
+            speedLineEffect.SetActive(false);
+        }
+        if (gameHUD == null)
+        {
+            gameHUD = Instantiate(Resources.Load("UIs/GameHUD") as GameObject);
+        }
+        if (recordUI == null)
+        {
+            recordUI = gameHUD.GetComponentInChildren<UIRecord>();
         }
     }
 }

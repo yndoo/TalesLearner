@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.XR;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour, ISuperJumpable
 {
@@ -197,9 +197,28 @@ public class PlayerController : MonoBehaviour, ISuperJumpable
     {
         if(context.phase == InputActionPhase.Started)
         {
-            UIManager.Instance.manualUI.ManualToggle();
+            UIManager.Instance.ManualUI.ManualToggle();
         }
     }
+
+    public void OnLobby(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+        {
+            UIManager.Instance.SysInfoUI.SetActive(true);
+            UIManager.Instance.SysInfoUI.GetComponent<UISystemInfo>().SetUIFor5Seconds($"로비로 이동합니다.");
+
+            SceneManager.LoadScene("Lobby");
+        }
+    }
+
+    //public void OnAnger(InputAction.CallbackContext context)
+    //{
+    //    if(context.phase == InputActionPhase.Performed)
+    //    {
+    //        gameObject.GetComponent<Collider>().enabled = false;
+    //    }
+    //}
     #endregion
 
     public void SuperJump()

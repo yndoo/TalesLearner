@@ -9824,6 +9824,38 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 933d54de-19fa-40fc-a513-ac5f29a3b25c
     m_ActionName: Player/Interact[/Keyboard/leftShift]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3619238869664516556}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnManual
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: a086c545-3af0-433c-9793-7ec0681a18fb
+    m_ActionName: Player/Manual[/Keyboard/tab]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3619238869664516556}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnLobby
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 0dc14d77-1a31-4607-a591-c7a7f83e15ae
+    m_ActionName: Player/Anger[/Keyboard/leftShift,/Keyboard/z]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -9849,6 +9881,7 @@ MonoBehaviour:
     m_Bits: 64
   CameraContainer: {fileID: 8841591753436750474}
   MeshTransform: {fileID: 1306315837744236465}
+  isDamaged: 0
 --- !u!54 &7957567126775501882
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9913,6 +9946,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curStamina: 0
   curDamage: 0
+  IsAnger: 0
 --- !u!114 &7038802180112748172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9943,7 +9977,8 @@ MonoBehaviour:
   checkRate: 0.05
   checkLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 128
+  myTrans: {fileID: 1306315837744236465}
 --- !u!1 &8267790407476330972
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,6 +8,8 @@ public class PlayerCondition : MonoBehaviour
     [SerializeField] float curStamina;
     [SerializeField] float curDamage;
 
+    public bool IsAnger = false;
+
     private void Start()
     {
         curStamina = PublicDefinitions.MaxStamina;
@@ -31,7 +33,7 @@ public class PlayerCondition : MonoBehaviour
         {
             curStamina = PublicDefinitions.MaxStamina;
         }
-        UIManager.Instance.gaugeUI.SetStamina(curStamina);
+        UIManager.Instance.GaugeUI.SetStamina(curStamina);
     }
 
     public void UseStamina()
@@ -43,7 +45,7 @@ public class PlayerCondition : MonoBehaviour
             // TODO : ∞‘¿Ã¡ˆπŸ ±Ù∫˝¿Ã±‚
         }
 
-        UIManager.Instance.gaugeUI.SetStamina(curStamina);
+        UIManager.Instance.GaugeUI.SetStamina(curStamina);
     }
 
     public void AddDamage(float damage)
@@ -53,7 +55,7 @@ public class PlayerCondition : MonoBehaviour
         {
             curDamage = PublicDefinitions.MaxDamage;
         }
-        UIManager.Instance.gaugeUI.SetDamage(curDamage);
+        UIManager.Instance.GaugeUI.SetDamage(curDamage);
     }
 
     public void AddStamina(float amount)
@@ -63,6 +65,6 @@ public class PlayerCondition : MonoBehaviour
         {
             curStamina = PublicDefinitions.MaxStamina;
         }
-        UIManager.Instance.gaugeUI.SetStamina(curStamina);
+        UIManager.Instance.GaugeUI.SetStamina(curStamina);
     }
 }

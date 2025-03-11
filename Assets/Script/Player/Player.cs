@@ -18,6 +18,8 @@ public class Player : MonoBehaviour, IFallable, IDamagable
     public void Teleport(Vector3 pos)
     {
         transform.position = pos;
+        UIManager.Instance.SysInfoUI.SetActive(true);
+        UIManager.Instance.SysInfoUI.GetComponent<UISystemInfo>().SetUIFor5Seconds("장애물에 부딪혀 텔레포트 되었습니다.");
         // TODO : 텔레포트 애니메이션 등
     }
 

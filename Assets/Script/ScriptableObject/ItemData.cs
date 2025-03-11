@@ -8,6 +8,6 @@ public class ItemData : ScriptableObject
     [Header("Info")]
     public string itemName;
     public string description;
-    public ItemType type;
+    public EItemType type;
     public float abilityValue; // 아이템 효과 적용 수치
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 #region enum
-public enum ItemType
+public enum EItemType
 {
     SpeedItem,
     AddDash,
@@ -11,13 +11,19 @@ public enum ItemType
     End,
 }
 
-public enum DescUIType
+public enum EDescUIType
 {
     Tutorial_Item,
     Tutorial_Dash,
     Tutorial_Superjump,
     Item_Booster,
     Item_AddDash,
+}
+
+public enum EGameState
+{
+    GameStart,
+    GameEnd,
 }
 #endregion
 

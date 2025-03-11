@@ -36,7 +36,7 @@ public class TutorialPlayer : MonoBehaviour
             else
             {
                 // ºó °÷À» ½ð °æ¿ì 
-                UIManager.Instance.DescriptionUI.SetActive(false);
+                UIManager.Instance.SysInfoUI.SetActive(false);
             }
         }
     }
