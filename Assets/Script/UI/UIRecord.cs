@@ -32,7 +32,7 @@ public class UIRecord : MonoBehaviour
     {
         isRunning = false;
 
-        float savedRec = PlayerPrefs.GetFloat(recordKey);
+        float savedRec = PlayerPrefs.GetFloat(recordKey, float.MaxValue);
         if(curTime < savedRec)
         {
             PlayerPrefs.SetFloat(recordKey, curTime);
