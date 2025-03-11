@@ -9,7 +9,7 @@ public class CurveZone : MonoBehaviour
     [HideInInspector]public Vector3 next = Vector3.zero;
     
     [HideInInspector] public Coroutine coroutine;
-    [HideInInspector] public float rotationSpeed = 5;
+    [HideInInspector] public float rotationSpeed = 6;
 
 
     public void RotateStart(bool isCorrectDir)
@@ -31,7 +31,7 @@ public class CurveZone : MonoBehaviour
         Quaternion targetRotation = Quaternion.Euler(t.eulerAngles.x, t.eulerAngles.y + angle, t.eulerAngles.z);
 
         float passTime = 0f;
-        while (passTime < 2f)
+        while (passTime < 1.5f)
         {
             t.rotation = Quaternion.Lerp(startRotation, targetRotation, passTime);
             passTime += Time.deltaTime * rotationSpeed;

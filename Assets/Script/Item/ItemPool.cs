@@ -13,7 +13,7 @@ public class ItemPool : MonoBehaviour
         {
             if(instance == null)
             {
-                instance = new ItemPool();
+                instance = Instantiate(Resources.Load("ItemPool")).GetComponent<ItemPool>();
             }
             return instance;
         }
@@ -26,8 +26,11 @@ public class ItemPool : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
-        pool = new ObjectPool<ItemObject>(itemPrefabs, 5, transform);
+        if (instance == null)
+        {
+            instance = this;
+            pool = new ObjectPool<ItemObject>(itemPrefabs, 5, transform);
+        }
     }
 
     public ItemObject Get()

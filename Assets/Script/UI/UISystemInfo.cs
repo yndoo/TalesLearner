@@ -7,6 +7,7 @@ public class UISystemInfo : MonoBehaviour
 {
     public TextMeshProUGUI message;
     private Coroutine coroutine;
+    bool canClear = true;
     public void SetUI(string _msg)
     {
         message.text = _msg;
@@ -16,7 +17,7 @@ public class UISystemInfo : MonoBehaviour
     {
         if(coroutine != null)
         {
-            if(message.text != "")
+            if(message.text != "" && !canClear)
                 _msg = $"{message.text}\n{_msg}"; 
             StopCoroutine(coroutine);
         }
@@ -26,9 +27,12 @@ public class UISystemInfo : MonoBehaviour
 
     IEnumerator MessageCoroutine()
     {
+        canClear = false;
         this.gameObject.SetActive(true);
 
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(2.5f);
+        canClear = true;
+        yield return new WaitForSeconds(2.5f);
 
         this.gameObject.SetActive(false);
         message.text = "";

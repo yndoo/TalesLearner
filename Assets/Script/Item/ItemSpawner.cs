@@ -21,6 +21,7 @@ public class ItemSpawner : MonoBehaviour
         {
             ItemObject item = ItemPool.Instance.Get();
             spawnedObjects.Add(item);
+            item.transform.parent = transform;
             item.transform.localPosition = spawnPosition[i];
         }
     }

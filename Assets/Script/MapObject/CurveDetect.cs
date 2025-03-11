@@ -16,6 +16,7 @@ public class CurveDetect : MonoBehaviour
         if (zone.prev == Vector3.zero) zone.prev = vec;
         else
         {
+            if (zone.prev == vec) return;
             zone.next = vec;
 
             // prev~next È¸Àü
@@ -29,7 +30,7 @@ public class CurveDetect : MonoBehaviour
     IEnumerator Refresh()
     {
         GetComponent<Collider>().enabled = false;   
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.02f);
         GetComponent<Collider>().enabled = true;
     }
 }
