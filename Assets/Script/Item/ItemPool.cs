@@ -40,7 +40,6 @@ public class ItemPool : MonoBehaviour
 
     public void Return(ItemObject item)
     {
-        item.transform.parent = transform;
         pool.Return(item);
     }
 }
